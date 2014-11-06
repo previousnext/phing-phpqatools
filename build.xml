@@ -3,7 +3,7 @@
   description: A library of PHP(CS/MD/LOC) targets for Phing.
 -->
 
-<project name="php" default="phpcs" phingVersion="2.4.11">
+<project name="php" default="prepare" phingVersion="2.4.11">
 
     <!--               -->
     <!--  Properties   -->
@@ -29,23 +29,23 @@
 
     <target name="prepare"
             description="Setup steps for PHP build tasks.">
-        <mkdir dir="${php.logs.dir}"/>
+      <mkdir dir="${php.logs.dir}"/>
     </target>
 
     <target name="phpcs"
             depends="prepare"
             description="Find coding standard violations using PHP_CodeSniffer and print human readable output. Intended for usage on the command line before committing.">
-        <exec command="${php.bin.phpcs} --report=full --standard=${php.sniff.ruleset} --extensions=${php.sniff.extensions} --ignore=${php.sniff.exclusions} ${php.sniff.dirs}"
-              logoutput="true"
-              checkreturn="true" />
+      <exec command="${php.bin.phpcs} --report=full --standard=${php.sniff.ruleset} --extensions=${php.sniff.extensions} --ignore=${php.sniff.exclusions} ${php.sniff.dirs}"
+            logoutput="true"
+            checkreturn="true" />
     </target>
 
     <target name="ci:phpcs"
             depends="prepare"
             description="Find coding standard violations using PHP_CodeSniffer creating a log file for the continuous integration server.">
-        <exec command="${php.bin.phpcs} --report=checkstyle --report-file=${php.logs.dir}/checkstyle.xml --standard=${php.sniff.ruleset} --extensions=${php.sniff.extensions} --ignore=${php.sniff.exclusions} ${php.sniff.dirs}"
-              logoutput="true"
-              checkreturn="true" />
+      <exec command="${php.bin.phpcs} --report=checkstyle --report-file=${php.logs.dir}/checkstyle.xml --standard=${php.sniff.ruleset} --extensions=${php.sniff.extensions} --ignore=${php.sniff.exclusions} ${php.sniff.dirs}"
+            logoutput="true"
+            checkreturn="true" />
     </target>
 
     <target name="phploc"
