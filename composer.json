@@ -1,0 +1,25 @@
+{
+  "name": "previousnext/phing-php",
+  "type": "library",
+  "description": "A library of PHP(CS/MD/LOC) targets for Phing.",
+  "homepage": "https://github.com/previousnext/phing-php",
+  "support": {
+    "issues": "https://github.com/previousnext/phing-php",
+    "source": "https://github.com/previousnext/phing-php"
+  },
+  "keywords": [
+    "phing"
+  ],
+  "license": "GPL-2.0+",
+  "require": {
+    "squizlabs/php_codesniffer":       "1.4.6",
+    "phpmd/phpmd":                     "1.5.0",
+    "phploc/phploc":                   "2.0.0-BETA1",
+    "sebastian/phpcpd":                "*",
+    "drupal/coder":                    "dev-7.x-2.x"
+  },
+  "minimum-stability": "dev",
+  "config": {
+    "bin-dir": "bin/"
+  }
+}
