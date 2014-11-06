@@ -12,7 +12,7 @@
     <property name="php.sniff.exclusions" value="*/libraries*/,*/contrib/*,*/*.features.*,*/*.field_group.inc,*/*.layout.*,*/*.pages_default.*,*/*.panels_default.*,*/*strongarm.inc,*/*.views_default.inc" />
     <property name="php.sniff.extensions" value="php,module,inc,install,test,profile,theme" />
     <property name="php.sniff.ruleset"    value="vendor/drupal/coder/coder_sniffer/Drupal/ruleset.xml" />
-    <property name="php.logs.dir"         value="${project.basedir}/logs/php" />
+    <property name="php.logs.dir"         value="${project.basedir}/build/logs/php" />
 
     <!-- A list of paths to PHP binaries -->
     <property name="php.bin.phpcs"        value="${project.basedir}/bin/phpcs" />
@@ -29,55 +29,55 @@
 
     <target name="prepare"
             description="Setup steps for PHP build tasks.">
-      <mkdir dir="${php.logs.dir}"/>
+        <mkdir dir="${php.logs.dir}"/>
     </target>
 
     <target name="phpcs"
             depends="prepare"
             description="Find coding standard violations using PHP_CodeSniffer and print human readable output. Intended for usage on the command line before committing.">
-      <exec command="${php.bin.phpcs} --report=full --standard=${php.sniff.ruleset} --extensions=${php.sniff.extensions} --ignore=${php.sniff.exclusions} ${php.sniff.dirs}"
-            logoutput="true"
-            checkreturn="true" />
+        <exec command="${php.bin.phpcs} --report=full --standard=${php.sniff.ruleset} --extensions=${php.sniff.extensions} --ignore=${php.sniff.exclusions} ${php.sniff.dirs}"
+              logoutput="true"
+              checkreturn="true" />
     </target>
 
     <target name="ci:phpcs"
             depends="prepare"
             description="Find coding standard violations using PHP_CodeSniffer creating a log file for the continuous integration server.">
-      <exec command="${php.bin.phpcs} --report=checkstyle --report-file=${php.logs.dir}/checkstyle.xml --standard=${php.sniff.ruleset} --extensions=${php.sniff.extensions} --ignore=${php.sniff.exclusions} ${php.sniff.dirs}"
-            logoutput="true"
-            checkreturn="true" />
+        <exec command="${php.bin.phpcs} --report=checkstyle --report-file=${php.logs.dir}/checkstyle.xml --standard=${php.sniff.ruleset} --extensions=${php.sniff.extensions} --ignore=${php.sniff.exclusions} ${php.sniff.dirs}"
+              logoutput="true"
+              checkreturn="true" />
     </target>
 
     <target name="phploc"
             depends="prepare"
             description="Measure project size using PHPLOC">
-      <exec command="${php.bin.phploc} --log-xml ${php.logs.dir}/phploc.xml ${php.sniff.dirs}"
-            logoutput="true"
-            checkreturn="true" />
+        <exec command="${php.bin.phploc} --log-xml ${php.logs.dir}/phploc.xml ${php.sniff.dirs}"
+              logoutput="true"
+              checkreturn="true" />
     </target>
 
     <target name="phpcpd"
             depends="prepare"
             description="Find duplicate code using PHPCPD">
-      <exec command="${php.bin.phploc} --log-pmd ${php.logs.dir}/pmd-cpd.xml ${php.sniff.dirs}"
-            logoutput="true"
-            checkreturn="true" />
+        <exec command="${php.bin.phploc} --log-pmd ${php.logs.dir}/pmd-cpd.xml ${php.sniff.dirs}"
+              logoutput="true"
+              checkreturn="true" />
     </target>
 
     <target name="phpmd"
             depends="prepare"
             description="Perform project mess detection using PHPMD and print human readable output. Intended for usage on the command line before committing.">
-      <exec command="${php.bin.phpmd} ${php.sniff.dirs} text ${php.logs.dir}/phpmd.xml"
-            logoutput="true"
-            checkreturn="true" />
+        <exec command="${php.bin.phpmd} ${php.sniff.dirs} text ${php.logs.dir}/phpmd.xml"
+              logoutput="true"
+              checkreturn="true" />
     </target>
 
     <target name="ci:phpmd"
             depends="prepare"
             description="Perform project mess detection using PHPMD creating a log file for the continuous integration server">
-      <exec command="${php.bin.phpmd} ${php.sniff.dirs} --reportfile ${php.logs.dir}/phpmd.xml"
-            logoutput="true"
-            checkreturn="true" />
+        <exec command="${php.bin.phpmd} ${php.sniff.dirs} --reportfile ${php.logs.dir}/phpmd.xml"
+              logoutput="true"
+              checkreturn="true" />
     </target>
 
 </project>
