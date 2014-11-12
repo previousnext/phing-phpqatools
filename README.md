@@ -1,5 +1,5 @@
-Phing PHP
-=========
+Phing PHPQATools
+================
 
 ## Overview
 
@@ -10,7 +10,7 @@ A library of PHP(CS/MD/LOC) targets for Phing.
 This project can be checked out with Composer.
 
 ```
-require: "previousnext/phing-php": "*"
+require: "previousnext/phing-phpqatools": "*"
 ```
 
 If you are already running a Phing build in an existing project why not

@@ -1,11 +1,11 @@
 {
-    "name": "previousnext/phing-php",
+    "name": "previousnext/phing-phpqatools",
     "type": "library",
     "description": "A library of PHP(CS/MD/LOC) targets for Phing.",
-    "homepage": "https://github.com/previousnext/phing-php",
+    "homepage": "https://github.com/previousnext/phing-phpqatools",
     "support": {
-        "issues": "https://github.com/previousnext/phing-php",
-        "source": "https://github.com/previousnext/phing-php"
+        "issues": "https://github.com/previousnext/phing-phpqatools",
+        "source": "https://github.com/previousnext/phing-phpqatools"
     },
     "keywords": [
         "phing"
