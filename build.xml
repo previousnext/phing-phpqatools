@@ -44,8 +44,15 @@
             depends="phpqatools:init"
             description="Find coding standard violations using PHP_CodeSniffer creating a log file for the continuous integration server.">
         <exec command="${php.bin.phpcs} --report=checkstyle --report-file=${php.logs.dir}/checkstyle.xml --standard=${php.sniff.ruleset} --extensions=${php.sniff.extensions} --ignore=${php.sniff.exclusions} ${php.sniff.dirs}"
-              logoutput="true"
-              checkreturn="true" />
+              logoutput="true" />
+        <!-- We do this based on the advise given here:
+               https://github.com/squizlabs/PHP_CodeSniffer/issues/470 -->
+        <exec executable="sed">
+            <arg value="-i" />
+            <arg value="s@${project.basedir}@.@g" />
+            <arg value="${php.logs.dir}/checkstyle.xml" />
+        </exec>
+        <echo msg="Results can be found here: ${php.logs.dir}/checkstyle.xml" />
     </target>
 
     <target name="phploc"
