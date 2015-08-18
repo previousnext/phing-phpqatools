@@ -16,6 +16,7 @@
 
     <!-- A list of paths to PHP binaries -->
     <property name="php.bin.phpcs"        value="${project.basedir}/bin/phpcs" />
+    <property name="php.bin.phpcbf"       value="${project.basedir}/bin/phpcbf" />
     <property name="php.bin.phploc"       value="${project.basedir}/bin/phploc" />
     <property name="php.bin.phpcpd"       value="${project.basedir}/bin/phpcpd" />
     <property name="php.bin.phpmd"        value="${project.basedir}/bin/phpmd" />
@@ -36,6 +37,14 @@
             depends="phpqatools:init"
             description="Find coding standard violations using PHP_CodeSniffer and print human readable output. Intended for usage on the command line before committing.">
         <exec command="${php.bin.phpcs} --report=full --standard=${php.sniff.ruleset} --extensions=${php.sniff.extensions} --ignore=${php.sniff.exclusions} ${php.sniff.dirs}"
+              logoutput="true"
+              checkreturn="true" />
+    </target>
+    
+    <target name="phpcbf"
+            depends="phpqatools:init"
+            description="Automatically fix coding standard violations using PHP_CodeSniffer and print human readable output. Intended for usage on the command line before committing.">
+        <exec command="${php.bin.phpcbf} --report=full --standard=${php.sniff.ruleset} --extensions=${php.sniff.extensions} --ignore=${php.sniff.exclusions} ${php.sniff.dirs}"
               logoutput="true"
               checkreturn="true" />
     </target>
